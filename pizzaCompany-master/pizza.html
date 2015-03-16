@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
+  <link href="css/styles.css" rel="stylesheet" type="text/css">
+  <script src="js/jquery-1.11.2.js"></script>
+  <script src="js/scripts.js"></script>
+  <title>Pizza Factory</title>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Pizza Orders</h1>
+
+    <div class="row" id="order">
+      <div class="col-md-6">
+        <h2>Add a size:</h2>
+        <form id="pizza">
+          <div class="form-group">
+            <label for="pizza-pizza">Size in Inches</label>
+            <input type="number" class="form-control" id="pizza-size">
+          </div>
+      </div>
+
+          <div class="col-md-6">
+            <h2>Add a topping:</h2>
+              <div class="form-group">
+                <label for="topping">Cheese or Pepperoni?</label>
+                <select class="form-control" id="pizza-topping">
+                  <option>Cheese</option>
+                  <option>Pepperoni</option>
+                </select>
+              </div>
+            </div>
+            <div>
+            <button type="submit" class="btn">Add</button>
+          </div>
+            </form>
+
+      <div class="col-sm-6">
+        <div id="show-orders">
+          <h5>Orders</h5>
+          <h4></h4>
+              <ul id="orders">
+
+              </ul>
+            </div>
+          </div>
+
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

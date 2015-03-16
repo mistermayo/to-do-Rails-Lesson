@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="bestRestaurant">
+  <head>
+    <title>Restaurants</title>
+    <script src='lib/angular.js'></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.0-beta.1/angular-animate.js"></script>
+    <script src='app.js'></script>
+    <script src='js/RestaurantsController.js'></script>
+    <link rel="stylesheet" href="css/bootstrap-paper.css" media="screen" title="no title" charset="utf-8">
+  </head>
+  <body>
+    <div class="container" ng-controller="RestaurantCtrl">
+      <div class="row">
+        <div class="col-md-12">
+          <h4>Search Restaurants</h4>
+          <form class="form-inline" role="form">
+            <div class="form-group">
+              <input ng-model="query" type="text" class="form-control" placeholder="Search">
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <div class="row" ng-app="ngAnimate">
+        <div class="col-md-12">
+          <h2 ng-show="restaurants.length && filtered.length">Best Restaurants in the World</h2>
+          <h2 ng-show="restaurants.length && !filtered.length">No Restaurants</h2>
+          <ul>
+            <li ng-repeat="item in filtered = (restaurants | filter:query)">
+              <span ng-click="editing = true" ng-hide="editing">
+                {{item.name + ', ' + item.type + ', ' + item.price + ', ' + item.location + ', ' + item.description}} <a ng-click="deleteRestaurant(item)">Delete</a>
+              </span>
+              <span class="form-group" ng-show="editing" ng-submit="editing = false">
+                <form class="form-inline" role="form">
+                  <input type="text" class="form-control input-sm" ng-model="item.name" placeholder="Name" required/>
+                  <button class="btn btn-primary btn-sm" type="submit">Save</button>
+                </form>
+                <form class="form-inline" role="form">
+                  <input type="text" class="form-control input-sm" ng-model="item.location" placeholder="Location" required/>
+                  <button class="btn btn-primary btn-sm" type="submit">Save</button>
+                </form>
+                <form class="form-inline" role="form">
+                  <input type="text" class="form-control input-sm" ng-model="item.type" placeholder="Type" required/>
+                  <button class="btn btn-primary btn-sm" type="submit">Save</button>
+                </form>
+                <form class="form-inline" role="form">
+                  <input type="text" class="form-control input-sm" ng-model="item.description" placeholder="Type" required/>
+                  <button class="btn btn-primary btn-sm" type="submit">Save</button>
+                </form>
+                <select class="select-inline" roll="select" ng-model="item.price">
+                  <option class ="budget">$</option>
+                  <option class ="moderate">$$</option>
+                  <option class ="expensive">$$$</option>
+                  <option class ="high-end">$$$$</option>
+                  <button class="btn btn-primary btn-sm" type="submit">Save</button>
+                </select>
+              </span>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <h2>New Restaurant</h2>
+        <form ng-submit="addRestaurant()" class="form-inline" role="form">
+          <div class="form-group">
+            <input type="text" ng-model="restaurantName" class="form-control" placeholder="Enter name">
+          </div>
+
+          <div class="form-group">
+            <input type="text" ng-model="restaurantType" class="form-control" placeholder="Enter type">
+          </div>
+
+          <div class="form-group">
+            <input type="text" ng-model="restaurantLocation" class="form-control" placeholder="Enter location">
+          </div>
+
+          <div class="form-group">
+            <input type="text" ng-model="restaurantDescription" class="form-control" placeholder="Enter a description">
+          </div>
+
+          <div class="select">
+            <select ng-model="restaurantPrice" class="form-inline">
+              <option class ="budget">$</option>
+              <option class ="moderate">$$</option>
+              <option class ="expensive">$$$</option>
+              <option class ="high-end">$$$$</option>
+            </select>
+          </div>
+
+          <button type="submit" class="btn btn-default">Submit</button>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
